@@ -110,7 +110,9 @@ export const resolvePlugins = (
   }
 
   if (options.github) {
-    defaultPlugins.push('@semantic-release/github');
+    defaultPlugins.push(['@semantic-release/github', {
+      successComment: ":tada: This ${issue.pull_request ? 'pull request' : 'issue'} has been ${issue.pull_request ? 'included' : 'resolved'} in version ${nextRelease.gitTag} :tada:\n\nThe release is available on [GitHub release](<github_release_url>)",
+    }]);
   }
 
   return defaultPlugins;
